@@ -2,6 +2,10 @@
 
 Deploy nginx with php-fpm in kubernetes version 1.14
 
+1) create folder called "nginx" in /mnt
+
+2) use commands for deploy environment
+
 kubectl apply -f pvc.yaml
 
 kubectl apply -f pv-nginx.yaml
