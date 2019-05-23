@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    tier: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: nginx
+        tier: backend
+    spec:
+      volumes:
+      - name: nginx-pv-volume
+        persistentVolumeClaim:
+          claimName: nginx-pvc-volume
+      - name: config
+        configMap:
+          name: nginx-config
+          items:
+          - key: config
+            path: site.conf
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        volumeMounts:
+        - name: nginx-pv-volume
+          mountPath: /usr/share/nginx/html
+        - name: config
+          mountPath: /etc/nginx/conf.d
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: default
+
+spec:
+  selector:
+    app: nginx
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 32444

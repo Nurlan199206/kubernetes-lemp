@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: php
+        tier: backend
+    spec:
+      volumes:
+      - name: nginx-pv-volume
+        persistentVolumeClaim:
+          claimName: nginx-pvc-volume
+      containers:
+      - name: php
+        image: php:7.2-fpm
+        resources:
+          requests:
+            memory: 50Mi
+            cpu: 50m
+          limits:
+            memory: 100Mi
+            cpu: 100m
+        volumeMounts:
+        - name: nginx-pv-volume
+          mountPath: /usr/share/nginx/html
+      initContainers:
+      - name: install
+        image: busybox
+        volumeMounts:
+        - name: nginx-pv-volume
+          mountPath: /mnt/nginx
+        command:
+        - wget
+        - "-O"
+        - "/mnt/nginx/index.php"
+        - https://raw.githubusercontent.com/do-community/php-kubernetes/master/index.php
