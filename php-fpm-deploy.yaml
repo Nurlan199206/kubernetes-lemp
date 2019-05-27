@@ -28,8 +28,8 @@ spec:
             memory: 50Mi
             cpu: 50m
           limits:
-            memory: 100Mi
-            cpu: 100m
+            memory: 200Mi
+            cpu: 200m
         volumeMounts:
         - name: nginx-pv-volume
           mountPath: /usr/share/nginx/html
