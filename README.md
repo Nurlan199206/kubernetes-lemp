@@ -22,3 +22,4 @@ kubectl apply -f php-fpm-deploy.yaml
 kubectl apply -f php-service.yaml
 >>>>>>> c84fa31c4921c853a3113ef2bae4e499e7056769
 # kubernetes-lemp
+# kubernetes-lemp
