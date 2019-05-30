@@ -26,4 +26,5 @@ Deploy nginx with php-fpm in kubernetes version 1.14
 ```kubectl apply -f phpmyadmin.yaml```
 
 http://localhost:32444 - nginx web page
+
 http://localhost:32443 - phpmyadmin web page
