@@ -18,3 +18,6 @@ kubectl apply -f nginx-configmap.yaml
 kubectl apply -f php-fpm-deploy.yaml
 
 kubectl apply -f php-service.yaml
+
+http://localhost:32444 - nginx web page
+http://localhost:32443 - phpmyadmin web page
