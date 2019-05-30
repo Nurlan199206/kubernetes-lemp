@@ -31,16 +31,8 @@ spec:
             memory: 100Mi
             cpu: 100m
         env:
-#        - name: PMA_HOST
-#          value: "172.17.0.30" #<<<--- mysql container IP
-        - name: PMA_USER
-          value: "root"
-        - name: PMA_PASSWORD
-          value: "password"
         - name: PMA_HOST
-          value: 172.17.0.22
-        - name: PMA_PORT
-          value: "3306"
+          value: mysql-service #<<<--- mysql service 
 ---
 apiVersion: v1
 kind: Service
