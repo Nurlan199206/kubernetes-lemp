@@ -7,9 +7,9 @@ Deploy nginx with php-fpm in kubernetes version 1.14
 
 2) use commands for deploy environment
 
-```kubectl apply -f pvc.yaml```
-
 ```kubectl apply -f pv-nginx.yaml```
+
+```kubectl apply -f pvc.yaml```
 
 ```kubectl apply -f php-service.yaml```
 
